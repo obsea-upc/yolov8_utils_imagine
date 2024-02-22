@@ -12,6 +12,7 @@ parser.add_argument("lr", help="Choose learning rate") #, type=float)
 parser.add_argument("img_shp_x", help="Choose image shape x.", type=int)
 parser.add_argument("img_shp_y", help="Choose image shape y.", type=int)
 parser.add_argument("workers", help="Choose num of workers", type=int)
+parser.add_argument("seed", help="Choose num of seed", type=int)
 args = parser.parse_args()
 
 dict_pt_yolo = {
@@ -23,24 +24,14 @@ dict_pt_yolo = {
                }
 
 dataset = args.dataset
-print(dataset)
-
 model_name = args.yolo_model
-print(model_name)
-
 model_pt = dict_pt_yolo[model_name]
-print(model_pt)
-
 lr = float(args.lr)
-print(lr, type(lr))
-
 img_shp_x = args.img_shp_x
 img_shp_y = args.img_shp_y
 img_shp = [img_shp_x, img_shp_y]
-print(img_shp)
-
 workers = args.workers
-print(workers)
+seed = args.seed
 
 
 def execution_train_complete(folder):
@@ -56,7 +47,7 @@ def execution_train_complete(folder):
 # try:
 
 print(f'[blue]Try with workers={workers}')
-name = f'/{dataset}/{model_name}/lr{lr}/{img_shp[0]}/workers{workers}/autobatch/'.replace('.', '_')
+name = f'/{dataset}/{model_name}/lr{lr}/{img_shp[0]}/seed_{seed}/workers{workers}/autobatch/'.replace('.', '_')
 
 if not execution_train_complete(name):
 
@@ -77,39 +68,9 @@ if not execution_train_complete(name):
                 lr0=lr,
                 workers=workers,
                 imgsz=img_shp[0],
-                name='.' + name
+                name='.' + name,
+                seed=seed
                 )
-    # args = dict(model=model_pt,
-    #             # cfg='/srv/yolov8_ws/ultralytics/ultralytics/cfg/da.yaml',
-    #             cfg='/home/polba/workspace/demo_serv_IMagine/ultralytics/ultralytics/cfg/da.yaml',
-    #             data=f'/home/polba/workspace/demo_serv_IMagine/ultralytics/datasets/{dataset}/data.yaml',
-    #             # data=f'/srv/yolov8_ws/ultralytics/datasets/{dataset}/data.yaml',
-    #             epochs=200,
-    #             patience=200,
-    #             batch=-1,
-    #             lr0=lr,
-    #             workers=workers,
-    #             imgsz=img_shp[0],
-    #             name='.' + name
-    #             )
 
     task.connect(args)
-
-    # Training.
     results = model_yolov8.train(**args)
-#     results = model_yolov8.train(
-#         model=args['model'],
-#         cfg=args['cfg'],
-#         data=args['data'],
-#         epochs=args['epochs'],
-#         patience=args['patience'],
-#         batch=args['batch'],
-#         lr0=args['lr0'],
-#         workers=args['workers'],
-#         imgsz=args['imgsz'],
-#         name=args['name']
-#     )
-# # except:
-#     print(f'[red]Error with workers={workers}')
-# python3 yolov8_train_imagine_arg.py 10sp_508img nano 0.000375 1920 1080 0
-
