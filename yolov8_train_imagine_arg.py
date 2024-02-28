@@ -42,12 +42,10 @@ def execution_train_complete(folder):
         if os.path.exists(path):
             os.remove(path)
         return False
-        
 
-# try:
 
 print(f'[blue]Try with workers={workers}')
-name = f'/{dataset}/{model_name}/lr{lr}/{img_shp[0]}/seed_{seed}/workers{workers}/autobatch/'.replace('.', '_')
+name = f'/{dataset}_{model_name}_lr{lr}_{img_shp[0]}_seed_{seed}_workers{workers}_autobatch/'.replace('.', '_')
 
 if not execution_train_complete(name):
 
@@ -58,10 +56,12 @@ if not execution_train_complete(name):
     model_yolov8 = YOLO(model_pt)
 
     args = dict(model=model_pt,
-                # cfg='/srv/yolov8_ws/ultralytics/yolov8_utils_imagine/da.yaml',
-                cfg='/home/polba/workspace/yolov8/ultralytics/yolov8_utils_imagine/da.yaml',
-                data=f'/home/polba/workspace/yolov8/ultralytics/datasets/{dataset}/data.yaml',
-                # data=f'/srv/yolov8_ws/ultralytics/datasets/{dataset}/data.yaml',
+                # IMagine Docker Server
+                cfg='/srv/yolov8_ws/ultralytics/yolov8_utils_imagine/da.yaml',
+                data=f'/srv/yolov8_ws/ultralytics/datasets/{dataset}/data.yaml',
+                # Works in Local
+                # cfg='/home/polba/workspace/yolov8/ultralytics/yolov8_utils_imagine/da.yaml',
+                # data=f'/home/polba/workspace/yolov8/ultralytics/datasets/{dataset}/data.yaml',
                 epochs=1,
                 patience=1,
                 batch=-1,
