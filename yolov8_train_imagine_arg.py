@@ -44,7 +44,6 @@ def execution_train_complete(folder):
         return False
 
 
-print(f'[blue]Try with workers={workers}')
 name = f'/{dataset}_{model_name}_lr{lr}_{img_shp[0]}_seed_{seed}_workers{workers}_autobatch/'.replace('.', '_')
 
 if not execution_train_complete(name):
@@ -62,8 +61,8 @@ if not execution_train_complete(name):
                 # Works in Local
                 # cfg='/home/polba/workspace/yolov8/ultralytics/yolov8_utils_imagine/da.yaml',
                 # data=f'/home/polba/workspace/yolov8/ultralytics/datasets/{dataset}/data.yaml',
-                epochs=1,
-                patience=1,
+                epochs=200,
+                patience=200,
                 batch=-1,
                 lr0=lr,
                 workers=workers,
