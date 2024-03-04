@@ -7,13 +7,14 @@ from os.path import join
 from rich import print
 import shutil
 
-## coco classes
+# coco classes
 YOLO_CLASSES = ('Chromis chromis', 'Coris julis', 'Dentex dentex', 'Diplodus cervinus', 'Diplodus puntazzo',
                 'Diplodus sargus', 'Diplodus vulgaris', 'Diver', 'Epinephelus costae', 'Epinephelus marginatus',
                 'Mullus surmuletus', 'Muraena helena', 'Myliobatis aquila', 'Oblada melanura', 'Sarpa salpa',
                 'Seriola dumerili', 'Serranus cabrilla', 'Sparus aurata')
-## path root folder
+# path root folder
 ROOT = '/home/polba/sarti/datasets/temp_train/'
+
 
 ## converts the normalized positions  into integer positions
 def unconvert(class_id, width, height, x, y, w, h):
@@ -26,19 +27,17 @@ def unconvert(class_id, width, height, x, y, w, h):
     return (class_id, xmin, xmax, ymin, ymax)
 
 
-
-
-## converts coco into xml 
+# converts coco into xml
 def xml_transform(root, classes):  
-    class_path  = join(root, 'labels_txt/')
+    class_path = join(root, 'labels_txt/')
     ids = list()
-    l=os.listdir(class_path)
+    list_txt = os.listdir(class_path)
     
-    check = '.DS_Store' in l
+    check = '.DS_Store' in list_txt
     if check == True:
-        l.remove('.DS_Store')
+        list_txt.remove('.DS_Store')
         
-    ids=[x.split('.')[0] for x in l]   
+    ids = [x.split('.')[0] for x in list_txt]
 
     annopath = join(root, 'labels_txt', '%s.txt')
     imgpath = join(root, 'images', '%s.jpg')
