@@ -56,11 +56,11 @@ if not execution_train_complete(name):
 
     args = dict(model=model_pt,
                 # IMagine Docker Server
-                # cfg='/srv/yolov8_ws/ultralytics/yolov8_utils_imagine/da.yaml',
-                # data=f'/srv/yolov8_ws/ultralytics/datasets/{dataset}/data.yaml',
+                cfg='/srv/yolov8_ws/ultralytics/yolov8_utils_imagine/da.yaml',
+                data=f'/srv/yolov8_ws/ultralytics/datasets/{dataset}/data.yaml',
                 # Works in Local
-                cfg='/home/polba/workspace/yolov8/ultralytics/yolov8_utils_imagine/da.yaml',
-                data=f'/home/polba/workspace/yolov8/ultralytics/datasets/{dataset}/data.yaml',
+                # cfg='/home/polba/workspace/yolov8/ultralytics/yolov8_utils_imagine/da.yaml',
+                # data=f'/home/polba/workspace/yolov8/ultralytics/datasets/{dataset}/data.yaml',
                 epochs=200,
                 patience=200,
                 batch=-1,
