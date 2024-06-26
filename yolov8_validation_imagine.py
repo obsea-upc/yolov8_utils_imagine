@@ -4,7 +4,7 @@ from ultralytics import YOLO
 import json
 
 
-path = "/srv/yolov8_ws/ultralytics/runs/detect/"
+path = "/home/polba/workspace/yolov8_ws/ultralytics/yolov8_utils_imagine/runs/detect/"
 print(os.path.isfile("/srv/yolov8_ws/ultralytics/results_validation.json"))
 if os.path.isfile(path + "results_validation.json"):
     f = open("results_validation.json")
@@ -13,6 +13,7 @@ if os.path.isfile(path + "results_validation.json"):
 else:
     dict = {}
 for num_sp_num_img in os.listdir(path):
+    print(num_sp_num_img)
     if os.path.isdir(path + num_sp_num_img) and num_sp_num_img[0] == "1":
         for model in os.listdir(path + num_sp_num_img + "/"):
             for lr in os.listdir(path + num_sp_num_img + "/" + model + "/"):

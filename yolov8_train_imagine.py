@@ -8,7 +8,7 @@ import subprocess as sp
 datasets_list = ['19sp_2538img_17425annots']
 # models_list = [['yolov8n.pt', 'nano'], ['yolov8s.pt', 'small'], ['yolov8m.pt', 'medium'],
 #                ['yolov8l.pt', 'large'], ['yolov8x.pt', 'xlarge']]
-models_list = [['yolov8n.pt', 'nano'], ['yolov8l.pt', 'large'], ['yolov8x.pt', 'xlarge']]
+models_list = [['yolov8n.pt', 'nano']]
 # lrs_list = [0.000375, 0.00075]
 lrs_list = [0.000375]
 # img_shapes_list = [[640, 360], [768, 432], [960, 540], [1280, 720], [1920, 1080]]

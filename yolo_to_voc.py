@@ -7,14 +7,12 @@ from os.path import join
 from rich import print
 import shutil
 
-# coco classes
-YOLO_CLASSES = ('Chromis chromis', 'Coris julis', 'Dentex dentex', 'Diplodus cervinus', 'Diplodus puntazzo',
-                'Diplodus sargus', 'Diplodus vulgaris', 'Diver', 'Epinephelus costae', 'Epinephelus marginatus',
-                'Mullus surmuletus', 'Muraena helena', 'Myliobatis aquila', 'Oblada melanura', 'Sarpa salpa',
-                'Seriola dumerili', 'Serranus cabrilla', 'Sparus aurata')
-# path root folder
 ROOT = '/home/polba/sarti/datasets/temp_train/'
-
+YOLO_CLASSES = ('Chromis chromis', 'Chromis chromis (back)', 'Coris julis', 'Dentex dentex', 'Diplodus cervinus',
+                'Diplodus puntazzo', 'Diplodus sargus', 'Diplodus vulgaris', 'Diver', 'Epinephelus costae',
+                'Epinephelus marginatus', 'Mullus surmuletus', 'Muraena helena', 'Aetomylaeus bovinus', 'Oblada melanura',
+                'Parablennius gattorugine', 'Sarpa salpa', 'Seriola dumerili', 'Serranus cabrilla', 'Sparus aurata',
+                'Symphodus mediterraneus')
 
 ## converts the normalized positions  into integer positions
 def unconvert(class_id, width, height, x, y, w, h):

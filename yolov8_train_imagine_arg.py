@@ -48,19 +48,19 @@ name = f'/{dataset}_{model_name}_lr{lr}_{img_shp[0]}_seed_{seed}_workers{workers
 
 if not execution_train_complete(name):
 
-    task = Task.init(project_name='OBSEA', task_name=f'{name}')
-    task.set_parameter('model', model_pt[:-3])
+    # task = Task.init(project_name='OBSEA', task_name=f'{name}')
+    # task.set_parameter('model', model_pt[:-3])
 
     # Load the model.
     model_yolov8 = YOLO(model_pt)
 
     args = dict(model=model_pt,
                 # IMagine Docker Server
-                cfg='/srv/yolov8_ws/ultralytics/yolov8_utils_imagine/da.yaml',
-                data=f'/srv/yolov8_ws/ultralytics/datasets/{dataset}/data.yaml',
+                # cfg='/srv/yolov8_ws/ultralytics/yolov8_utils_imagine/da.yaml',
+                # data=f'/srv/yolov8_ws/ultralytics/datasets/{dataset}/data.yaml',
                 # Works in Local
-                # cfg='/home/polba/workspace/yolov8/ultralytics/yolov8_utils_imagine/da.yaml',
-                # data=f'/home/polba/workspace/yolov8/ultralytics/datasets/{dataset}/data.yaml',
+                cfg='/home/polba/workspace/yolov8/ultralytics/yolov8_utils_imagine/da.yaml',
+                data=f'/home/polba/workspace/yolov8/ultralytics/datasets/{dataset}/data.yaml',
                 epochs=200,
                 patience=200,
                 batch=-1,
@@ -71,5 +71,5 @@ if not execution_train_complete(name):
                 seed=seed
                 )
 
-    task.connect(args)
+    # task.connect(args)
     results = model_yolov8.train(**args)
